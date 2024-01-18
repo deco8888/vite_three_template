@@ -1,0 +1,36 @@
+{
+  // https://gist.github.com/azu/56a0411d69e2fc333d545bfe57933d07
+  // https://github.com/tsconfig/bases
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "target": "ESNext", // どのバージョンのJS向けに出力するか指定
+    "useDefineForClassFields": true, // 最新のClassフィールドの仕様へ移行
+    "module": "ESNext", // 出力されるJSがどのようにモジュールを読み込むか指定
+    "lib": ["ESNext", "DOM"], // 使いたいtargetには使いたい機能がない場合に指定
+    "moduleResolution": "Node", // モジュール解決の方法を’node’（Node.js）または’classic’（TypeScript pre-1.6）から設定
+    "strict": true, // 厳格チェック
+    "sourceMap": true, // ソースマップファイルの生成を有効化
+    "resolveJsonModule": true, // jsonファイルをimportして型解決した状態で値を取得できる
+    /**
+    * https://ja.vitejs.dev/guide/features.html#isolatedmodules
+    *  esbuild(ビルドツール)は型情報なしにトランスパイルを行うだけなので、
+    *  const enumや暗黙の型のみのインポートなどの特定の機能をサポートしていないため、
+    *  有効にすると、シングルファイルでの変換で正しく扱えない（隔離されたトランスパイルで動作しない）可能性のあるコードについて、警告を出す
+    */
+    "isolatedModules": true,
+    "skipLibCheck": true, // 型定義ファイルのチェックをスキップ,
+    "esModuleInterop": true, // CommonJSモジュールを実行可能とする
+    "noEmit": true, // JSソースコード、ソースマップ、型定義のファイルを出力しない
+    "noUnusedLocals": true, // 利用されていないローカル変数について、エラーを報告
+    "noUnusedParameters": true, // 利用されていない関数のパラメータについて、エラーを報告
+    "noImplicitReturns": true, // 有効化すると、TSは関数内のすべてのコードパスについて、値を返却していることをチェック
+    "forceConsistentCasingInFileNames": true, // ファイルの文字列の大文字小文字を区別するかどうか
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": ["@types/node", "vite/client"]
+  },
+  "exclude": ["node_modules", "dist"]
+}
