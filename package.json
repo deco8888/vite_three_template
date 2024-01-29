@@ -1,5 +1,5 @@
 {
-  "name": "bulge_practice",
+  "name": "vite_three_template",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -47,7 +47,6 @@
   },
   "dependencies": {
     "gsap": "^3.12.2",
-    "postprocessing": "^6.34.1",
     "three": "^0.160.0"
   },
   "volta": {
