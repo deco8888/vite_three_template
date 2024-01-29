@@ -1,19 +1,17 @@
 import { Color, Mesh, PlaneGeometry, RawShaderMaterial, Vector2, EventDispatcher } from 'three';
 
-import { Base } from '../BaseThree';
+import { BaseThree } from '../BaseThree';
 
-import vertexShader from '../../glsl/background/vertex.glsl';
-import fragmentShader from '../../glsl/background/fragment.glsl';
+import vertexShader from '../../glsl/scene/vertex.glsl';
+import fragmentShader from '../../glsl/scene/fragment.glsl';
 
-const COLOR_LIST = ['#92b7d6', '#6ccedd', '#fcedb9', '#f4b266'];
-
-export class Background extends Base {
+export class Scene extends BaseThree {
     animeFrameId: number | undefined;
     eventDispatcher: EventDispatcher;
 
-    constructor({ el }: { el: HTMLCanvasElement }) {
+    constructor() {
         super();
-        this.el = el;
+        this.el = document.querySelector('.scene');
         this.eventDispatcher = new EventDispatcher();
 
         this.init();
@@ -49,10 +47,10 @@ export class Background extends Base {
                 value: 0,
             },
             uColor1: {
-                value: new Color('#eff6fe'),
+                value: new Color('#e8fbe7'),
             },
             uColor2: {
-                value: new Color('#93d9fd'),
+                value: new Color('#ccebfb'),
             },
             uResolution: {
                 value: new Vector2(this.el?.offsetWidth),
@@ -84,6 +82,7 @@ export class Background extends Base {
     public resize(): void {
         const width = window.innerWidth;
         const height = window.innerHeight;
+
         if (!this.renderer) return;
         this.renderer.setSize(width, height);
 
@@ -99,11 +98,5 @@ export class Background extends Base {
         }
 
         this.dispose();
-    }
-
-    public changeColor(index: number): void {
-        if (!this.material) return;
-        this.material.uniforms.uColor2.value = new Color(COLOR_LIST[index]);
-        this.material.needsUpdate = true;
     }
 }

@@ -1,18 +1,19 @@
-import { Distortion } from './modules/Distortion';
+import { Scene } from './modules/Scene';
 
 export class App {
-    protected distortion: Distortion | null = null;
+    protected scene: Scene | null = null;
 
     constructor() {
         this.init();
     }
 
     private init() {
-        // this.distortion = new Distortion();
+        this.scene = new Scene();
+
         window.addEventListener('resize', this.onResize.bind(this));
     }
 
     private onResize(): void {
-        // if (this.distortion) this.distortion.resize();
+        if (this.scene) this.scene.resize();
     }
 }

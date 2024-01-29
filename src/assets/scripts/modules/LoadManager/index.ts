@@ -50,11 +50,11 @@ export class LoaderManager {
         this._assets = value;
     }
 
-    get(name: string) {
+    public get(name: string) {
         return this._assets[name];
     }
 
-    load(data: DataItem[]) {
+    public load(data: DataItem[]) {
         return new Promise<void>((resolve) => {
             const promises = [];
 
@@ -94,7 +94,7 @@ export class LoaderManager {
 
     private loadGLTF(url: string, name: string): Promise<GLTF> {
         return new Promise<GLTF>((resolve) => {
-            this.DRACOLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
+            this.DRACOLoader.setDecoderPath('assets/scripts/libs/draco_decoder/');
             this.GLTFLoader.setDRACOLoader(this.DRACOLoader);
 
             this.GLTFLoader.load(
@@ -144,14 +144,6 @@ export class LoaderManager {
                     this._assets[name].font = font;
                     resolve(font);
                 },
-
-                // onProgress callback
-                () =>
-                    // xhr
-                    {
-                        // console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
-                    },
-
                 // onError callback
                 (err) => {
                     // eslint-disable-next-line no-console
@@ -173,12 +165,6 @@ export class LoaderManager {
                     this._assets[name].obj = object;
                     resolve(object);
                 },
-                // onProgress callback
-                () =>
-                    // xhr
-                    {
-                        // console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
-                    },
                 // called when loading has errors
                 (err) => {
                     // eslint-disable-next-line no-console

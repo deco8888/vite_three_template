@@ -19,6 +19,7 @@ export class LoaderCheck {
     }
 
     public onComplete(): void {
-        console.log('load complete');
+        // eslint-disable-next-line no-console
+        console.log('load cåomplete');
     }
 }
